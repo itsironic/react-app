@@ -30,12 +30,24 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <Subject
+        {/* <Subject
           title={this.state.subject.title} 
-          desc={this.state.subject.desc}/>
+          desc={this.state.subject.desc}/> */}
+        <header>
+            <h1><a href="/" onClick={function(e){
+              console.log(e);
+              e.preventDefault();
+              this.setState({
+                mode: 'welcome'
+              });
+            }
+            .bind(this)}>{this.state.subject.title}</a></h1>
+            {this.state.subject.desc}
+        </header>
         <Navigation 
           data={this.state.navigation}/>
-        <Content title={_title} desc={_desc}/>
+        <Content 
+          title={_title} desc={_desc}/>
       </div>
     );
   }
