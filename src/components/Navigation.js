@@ -1,6 +1,16 @@
 import { Component } from "react";
 
 class Navigation extends Component {
+  shouldComponentUpdate(newProps, newState){
+    console.log('Navigation render shouldComponentUpdate'
+      ,newProps.data
+      ,this.props.data
+    );
+    if(this.props.data === newProps.data){
+      return false;
+    }
+    return true;
+  }
   render(){
     console.log('Navigation render');
     var lists = [];

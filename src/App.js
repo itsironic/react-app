@@ -9,6 +9,7 @@ import { Component } from 'react';
 class App extends Component {
   constructor(props){
     super(props);
+    this.max_navigation_id = 3;
     this.state = {
       mode: 'read',
       selected_content_id:2,
@@ -41,7 +42,16 @@ class App extends Component {
       }
       _article = <ReadContent title={_title} desc={_desc}/>
     } else if(this.state.mode === 'create')
-      _article = <CreateContent/>
+      _article = <CreateContent onSubmit={function(_title, _desc){
+        this.max_navigation_id = this.max_navigation_id+1;
+        var _navagation = this.state.navigation.concat(
+          {id:this.max_navigation_id, title:_title, desc:_desc}
+        )
+        this.setState({
+          navigation:_navagation
+        });
+        console.log(_title, _desc);
+      }.bind(this)}/>
     return (
       <div className="App">
         <Subject
